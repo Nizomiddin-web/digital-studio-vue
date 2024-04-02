@@ -17,7 +17,7 @@ const item = ref({
 
 <template>
   <div>
-    <div class="font-bold text-2xl mb-4">Project Name</div>
+    <div class="font-bold text-2xl mb-3">Project Name</div>
     <div class="flex gap-6">
       <div class="bg-slate-100 p-4 rounded-md">
             <ProjectCardItem :keys="keys" :item="item"/>
