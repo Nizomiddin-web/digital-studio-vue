@@ -1,4 +1,6 @@
 <script setup>
+import {ref} from 'vue'
+import CartComp from '@/components/CartComp.vue';
 defineProps({
   id: {
     type: String,
@@ -14,14 +16,22 @@ defineProps({
   },
 });
 
+const data = ref({
+    title:'CRM sistem design',
+    name:'Nizomiddin',
+    status:'Medium',
+    date:'02/04/2024'
+})
+
 function allowDrop(e) {
   e.preventDefault();
 }
 
 function drop(e) {
   e.preventDefault();
-  let data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+  let data = e.dataTransfer.getData("text");
+  console.log(document.getElementById(data))
+  e.target.appendChild(document.getElementById(data));
 }
 </script>
 
@@ -30,12 +40,14 @@ function drop(e) {
     <div class="flex justify-between items-center">
       <div class="font-bold text-xl">{{ item }}</div>
       <div v-if="is_add">
-        <button class="">
+        <button >
           <span><img src="/plus-circle.png" alt="" /></span>
         </button>
       </div>
     </div>
-    <div class="min-h-96" :id="id"  @drop="drop" @dragover.prevent ></div>
+    <div class="min-h-96" :id="id"  @drop="drop" @dragover="allowDrop" >
+      <slot/>
+    </div>
   </div>
 </template>
 
