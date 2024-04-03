@@ -3,6 +3,7 @@ import ProjectView from "@/views/project/ProjectView.vue";
 import PaymentView from "@/views/payments/PaymentView.vue";
 import TaskView from "../tasks/TaskView.vue";
 import DocumentView from "../document/DocumentView.vue";
+import Modal from "@/components/modal/Modal.vue";
 </script>
 
 <template>

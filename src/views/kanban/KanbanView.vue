@@ -1,6 +1,9 @@
 <script setup>
-import {ref} from 'vue'
-import CartComp from '@/components/CartComp.vue';
+
+import {ref,computed} from 'vue'
+import { useStore, } from 'vuex';
+
+//Props
 defineProps({
   id: {
     type: String,
@@ -16,12 +19,21 @@ defineProps({
   },
 });
 
+//Store 
+const store = useStore()
+const is_show = computed(()=>store.state.is_show)
+
 const data = ref({
     title:'CRM sistem design',
     name:'Nizomiddin',
     status:'Medium',
     date:'02/04/2024'
 })
+
+function set_show(){
+  console.log(is_show.value)
+  store.dispatch('set_show',!is_show.value)
+}
 
 function allowDrop(e) {
   e.preventDefault();
@@ -40,7 +52,7 @@ function drop(e) {
     <div class="flex justify-between items-center">
       <div class="font-bold text-xl">{{ item }}</div>
       <div v-if="is_add">
-        <button >
+        <button @click="set_show">
           <span><img src="/plus-circle.png" alt="" /></span>
         </button>
       </div>

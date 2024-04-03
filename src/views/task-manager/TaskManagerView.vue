@@ -2,48 +2,12 @@
 import ProjectHeaderView from "../project/ProjectHeaderView.vue";
 import Kanban from "@/views/kanban/KanbanView.vue";
 import CartComp from "@/components/CartComp.vue";
-import { ref } from "vue";
-const datas = ref([
-  {
-    id:1,
-    title: "CRM sistem design",
-    name: "Nizomiddin1",
-    status: "easy",
-    date: "02/04/2024",
-    category: "todo",
-  },
-  { id:2,
-    title: " design",
-    name: "Nizomiddin2",
-    status: "Medium",
-    date: "02/04/2024",
-    category: "inProgress",
-  },
-  {
-    id:3,
-    title: "CRM design",
-    name: "Nizomiddin3",
-    status: "hard",
-    date: "02/04/2024",
-    category: "todo",
-  },
-  {
-    id:4,
-    title: "ns design",
-    name: "Nizomiddin4",
-    status: "Medium",
-    date: "02/04/2024",
-    category: "closed",
-  },
-  {
-    id:5,
-    title: "CRM sistem design",
-    name: "Nizomiddin5",
-    status: "easy",
-    date: "02/04/2024",
-    category: "closed",
-  },
-]);
+import Modal from "@/components/modal/Modal.vue";
+import { ref,computed } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore()
+const datas = computed(()=>store.state.datas)
 
 const categories = ref([
   {
@@ -67,6 +31,9 @@ const categories = ref([
     id: "frozen",
   },
 ]);
+
+
+
 </script>
 
 <template>
@@ -91,7 +58,9 @@ const categories = ref([
         />
       </Kanban>
     </div>
+    
   </div>
+  <Modal v-if="store.state.is_show"/>
 </template>
 
 <style scoped></style>
